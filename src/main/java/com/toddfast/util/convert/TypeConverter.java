@@ -185,7 +185,7 @@ public class TypeConverter {
 	 * @return Copy of the registred type conversions
 	 */
 	public static Map<Object,Conversion<?>> getRegisteredTypeConversions() {
-		return Collections.unmodifiableMap(new LinkedHashMap<Object,Conversion<?>>(typeConversions));
+		return Collections.unmodifiableMap(new HashMap<Object,Conversion<?>>(typeConversions));
 	}
 
 	/**
