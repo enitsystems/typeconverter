@@ -7,7 +7,7 @@ import com.toddfast.util.convert.TypeConverter;
  * it is converted to a string via {@link toString()}.
  *
  */
-public class StringTypeConversion implements TypeConverter.Conversion {
+public class StringTypeConversion implements TypeConverter.Conversion<String> {
 
 	@Override
 	public Object[] getTypeKeys() {
@@ -19,22 +19,24 @@ public class StringTypeConversion implements TypeConverter.Conversion {
 	}
 
 	@Override
-	public Object convert(Object value) {
+	public String convert(Object value) {
 		if (value==null) {
 			return null;
 		}
 		if (value.getClass().isArray()) {
 			// This is a byte array; we can convert it to a string
 			if (value.getClass().getComponentType()==Byte.TYPE) {
-				value=new String((byte[])value);
+				return new String((byte[])value);
 			}
 			else if (value.getClass().getComponentType()==Character.TYPE) {
-				value=new String((char[])value);
+				return new String((char[])value);
+			} else {
+				return null;
 			}
+		} else if (value instanceof String) {
+			return (String)value;
+		} else {
+			return value.toString();
 		}
-		else if (!(value instanceof String)) {
-			value=value.toString();
-		}
-		return value;
 	}
 }

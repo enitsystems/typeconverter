@@ -6,7 +6,7 @@ import com.toddfast.util.convert.TypeConverter;
  * Returns the value as-is (no conversion)
  *
  */
-public class UnknownTypeConversion implements TypeConverter.Conversion {
+public class UnknownTypeConversion implements TypeConverter.Conversion<Object> {
 
 	@Override
 	public Object[] getTypeKeys() {

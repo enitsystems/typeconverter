@@ -21,8 +21,8 @@ public class TestSubclass extends TestSuperclass
 		return convertedValue;
 	}
 
-	public Conversion getTypeConversion(final Object targetTypeKey) {
-		return new Conversion() {
+	public Conversion<?> getTypeConversion(final Object targetTypeKey) {
+		return new Conversion<String>() {
 
 			@Override
 			public Object[] getTypeKeys() {
@@ -30,7 +30,7 @@ public class TestSubclass extends TestSuperclass
 			}
 
 			@Override
-			public Object convert(Object value) {
+			public String convert(Object value) {
 				System.out.println("--- Converting value to type \""+key+
 					"\": "+value);
 				return "Converted Test value";

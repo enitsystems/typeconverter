@@ -6,7 +6,7 @@ import com.toddfast.util.convert.TypeConverter;
  * Convert to an integer by parsing the value as a string
  *
  */
-public class IntegerTypeConversion implements TypeConverter.Conversion {
+public class IntegerTypeConversion implements TypeConverter.Conversion<Integer> {
 
 	@Override
 	public Object[] getTypeKeys() {
@@ -20,19 +20,20 @@ public class IntegerTypeConversion implements TypeConverter.Conversion {
 	}
 
 	@Override
-	public Object convert(Object value) {
+	public Integer convert(Object value) {
 		if (value==null) {
 			return null;
 		}
-		if (!(value instanceof Integer)) {
+		if (value instanceof Integer) {
+			return (Integer)value;
+		} else {
 			String v=value.toString();
 			if (v.trim().length()==0) {
-				value=null;
+				return null;
 			}
 			else {
-				value=Integer.parseInt(v);
+				return Integer.parseInt(v);
 			}
 		}
-		return value;
 	}
 }

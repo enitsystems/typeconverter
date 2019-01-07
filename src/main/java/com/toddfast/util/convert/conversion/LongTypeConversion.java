@@ -6,7 +6,7 @@ import com.toddfast.util.convert.TypeConverter;
  * Convert to a long by parsing the value as a string
  *
  */
-public class LongTypeConversion implements TypeConverter.Conversion {
+public class LongTypeConversion implements TypeConverter.Conversion<Long> {
 
 	@Override
 	public Object[] getTypeKeys() {
@@ -19,19 +19,20 @@ public class LongTypeConversion implements TypeConverter.Conversion {
 	}
 
 	@Override
-	public Object convert(Object value) {
+	public Long convert(Object value) {
 		if (value==null) {
 			return null;
 		}
-		if (!(value instanceof Long)) {
+		if (value instanceof Long) {
+			return (Long)value;
+		} else {
 			String v=value.toString();
 			if (v.trim().length()==0) {
-				value=null;
+				return null;
 			}
 			else {
-				value=Long.parseLong(v);
+				return Long.parseLong(v);
 			}
 		}
-		return value;
 	}
 }

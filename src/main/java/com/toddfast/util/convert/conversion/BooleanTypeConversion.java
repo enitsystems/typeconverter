@@ -6,7 +6,7 @@ import com.toddfast.util.convert.TypeConverter;
  * Convert to a boolean by parsing the value as a string
  *
  */
-public class BooleanTypeConversion implements TypeConverter.Conversion {
+public class BooleanTypeConversion implements TypeConverter.Conversion<Boolean> {
 
 	@Override
 	public Object[] getTypeKeys() {
@@ -19,19 +19,20 @@ public class BooleanTypeConversion implements TypeConverter.Conversion {
 	}
 
 	@Override
-	public Object convert(Object value) {
+	public Boolean convert(Object value) {
 		if (value==null) {
 			return null;
 		}
-		if (!(value instanceof Boolean)) {
+		if (value instanceof Boolean) {
+			return (Boolean)value;
+		} else {
 			String v=value.toString();
 			if (v.trim().length()==0) {
-				value=null;
+				return null;
 			}
 			else {
-				value=Boolean.parseBoolean(v);
+				return Boolean.parseBoolean(v);
 			}
 		}
-		return value;
 	}
 }

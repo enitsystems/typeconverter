@@ -19,13 +19,13 @@ public class StringWrapper {
 		return "Wrapped value \""+value+"\"";
 	}
 
-	public static class TypeConversion implements TypeConverter.Conversion {
+	public static class TypeConversion implements TypeConverter.Conversion<StringWrapper> {
 
 		public Object[] getTypeKeys() {
 			return new Object[] { StringWrapper.class };
 		}
 
-		public Object convert(Object value) {
+		public StringWrapper convert(Object value) {
 			return new StringWrapper(value.toString());
 		}
 	}

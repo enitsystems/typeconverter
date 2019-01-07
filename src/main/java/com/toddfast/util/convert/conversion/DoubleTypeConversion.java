@@ -6,7 +6,7 @@ import com.toddfast.util.convert.TypeConverter;
  * Convert to a double by parsing the value as a string
  *
  */
-public class DoubleTypeConversion implements TypeConverter.Conversion {
+public class DoubleTypeConversion implements TypeConverter.Conversion<Double> {
 
 	@Override
 	public Object[] getTypeKeys() {
@@ -19,19 +19,20 @@ public class DoubleTypeConversion implements TypeConverter.Conversion {
 	}
 
 	@Override
-	public Object convert(Object value) {
+	public Double convert(Object value) {
 		if (value==null) {
 			return null;
 		}
-		if (!(value instanceof Double)) {
+		if (value instanceof Double) {
+			return (Double)value;
+		} else {
 			String v=value.toString();
 			if (v.trim().length()==0) {
-				value=null;
+				return null;
 			}
 			else {
-				value=Double.parseDouble(v);
+				return Double.parseDouble(v);
 			}
 		}
-		return value;
 	}
 }

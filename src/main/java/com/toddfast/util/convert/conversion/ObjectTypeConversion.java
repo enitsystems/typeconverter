@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
  * value as-is
  *
  */
-public class ObjectTypeConversion implements TypeConverter.Conversion {
+public class ObjectTypeConversion implements TypeConverter.Conversion<Object> {
 
 	@Override
 	public Object[] getTypeKeys() {

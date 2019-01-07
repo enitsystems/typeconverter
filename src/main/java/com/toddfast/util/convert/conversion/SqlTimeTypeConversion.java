@@ -8,7 +8,7 @@ import com.toddfast.util.convert.TypeConverter;
  *
  * @see	java.sql.Date#valueOf(String)
  */
-public class SqlTimeTypeConversion implements TypeConverter.Conversion {
+public class SqlTimeTypeConversion implements TypeConverter.Conversion<java.sql.Time> {
 
 	@Override
 	public Object[] getTypeKeys() {
@@ -20,20 +20,21 @@ public class SqlTimeTypeConversion implements TypeConverter.Conversion {
 	}
 
 	@Override
-	public Object convert(Object value) {
+	public java.sql.Time convert(Object value) {
 		if (value==null) {
 			return null;
 		}
-		if (!(value instanceof java.sql.Time)) {
+		if (value instanceof java.sql.Time) {
+			return (java.sql.Time)value;
+		} else {
 			String v=value.toString();
 			if (v.trim().length()==0) {
-				value=null;
+				return null;
 			}
 			else {
 				// Value must be in the "hh:mm:ss" format
-				value=java.sql.Time.valueOf(v);
+				return java.sql.Time.valueOf(v);
 			}
 		}
-		return value;
 	}
 }

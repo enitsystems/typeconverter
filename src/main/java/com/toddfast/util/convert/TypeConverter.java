@@ -168,16 +168,6 @@ public class TypeConverter {
 	}
 
 	/**
-	 * Return the map of type conversion objects.  The keys for the values
-	 * in this map may be arbitrary objects, but the values are of type
-	 * <code>Conversion</code>.
-	 *
-	 */
-	private static Map<Object,Conversion<?>> getTypeConversions() {
-		return typeConversions;
-	}
-
-	/**
 	 * Return an immutable copy of the currently registered type conversion
 	 * objects.  The keys for the values in this map may be arbitrary objects, but
 	 * the values are of type <code>Conversion</code>
@@ -339,6 +329,7 @@ public class TypeConverter {
 	 * @return	The converted value object, or <code>null</code> if the
 	 *			original value is <code>null</code>
 	 */
+	@SuppressWarnings("unchecked")
 	public static <C> C convert(Class<C> type, Object value) {
 		return (C)convert((Object)type,value);
 	}
@@ -424,8 +415,8 @@ public class TypeConverter {
 			Object typeKey, Object value) {
 
 		// Check if the provided value is already of the target type
-		if (typeKey instanceof Class && ((Class)typeKey)!=Object.class
-				&& ((Class)typeKey).isInstance(value)) {
+		if (typeKey instanceof Class && ((Class<?>)typeKey)!=Object.class
+				&& ((Class<?>)typeKey).isInstance(value)) {
 			return IDENTITY_CONVERSION;
 		}
 
@@ -725,7 +716,7 @@ public class TypeConverter {
 	 *			If the value cannot be converted
 	 */
 	public static String asString(Object value) {
-		return (String)convert(String.class,value);
+		return convert(String.class,value);
 	}
 
 	/**
@@ -877,6 +868,7 @@ public class TypeConverter {
 
 	static {
 		// Discover all type conversions on the classpath and register them
+		@SuppressWarnings("rawtypes")
 		ServiceLoader<Conversion> loader=
 			ServiceLoader.load(Conversion.class);
 		for (Conversion<?> conversion: loader) {

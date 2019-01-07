@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  * Convert to a {@link BigDecimal} by parsing the value as a string
  *
  */
-public class BigDecimalTypeConversion implements TypeConverter.Conversion {
+public class BigDecimalTypeConversion implements TypeConverter.Conversion<BigDecimal> {
 
 	@Override
 	public Object[] getTypeKeys() {
@@ -18,19 +18,20 @@ public class BigDecimalTypeConversion implements TypeConverter.Conversion {
 		};
 	}
 
-	public Object convert(Object value) {
+	public BigDecimal convert(Object value) {
 		if (value==null) {
 			return null;
 		}
-		if (!(value instanceof BigDecimal)) {
+		if (value instanceof BigDecimal) {
+			return (BigDecimal)value;
+		} else {
 			String v=value.toString();
 			if (v.trim().length()==0) {
-				value=null;
+				return null;
 			}
 			else {
-				value=new BigDecimal(v);
+				return new BigDecimal(v);
 			}
 		}
-		return value;
 	}
 }

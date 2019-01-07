@@ -7,7 +7,7 @@ import com.toddfast.util.convert.TypeConverter;
  * as a string
  *
  */
-public class CharacterTypeConversion implements TypeConverter.Conversion {
+public class CharacterTypeConversion implements TypeConverter.Conversion<Character> {
 
 	@Override
 	public Object[] getTypeKeys() {
@@ -21,19 +21,20 @@ public class CharacterTypeConversion implements TypeConverter.Conversion {
 	}
 
 	@Override
-	public Object convert(Object value) {
+	public Character convert(Object value) {
 		if (value==null) {
 			return null;
 		}
-		if (!(value instanceof Character)) {
+		if (value instanceof Character) {
+			return (Character)value;
+		} else {
 			String v=value.toString();
 			if (v.trim().length()==0) {
-				value=null;
+				return null;
 			}
 			else {
-				value=new Character(v.charAt(0));
+				return new Character(v.charAt(0));
 			}
 		}
-		return value;
 	}
 }

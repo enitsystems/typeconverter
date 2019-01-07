@@ -4,7 +4,7 @@ package com.toddfast.util.convert;
  * Potentially returns a different set of
  *
  */
-public class NaughtyConversion implements TypeConverter.Conversion {
+public class NaughtyConversion implements TypeConverter.Conversion<Object> {
 
 	public Object[] getTypeKeys() {
 		return keys;

@@ -8,7 +8,7 @@ import com.toddfast.util.convert.TypeConverter;
  *
  * @see	java.sql.Date#valueOf(String)
  */
-public class SqlDateTypeConversion implements TypeConverter.Conversion {
+public class SqlDateTypeConversion implements TypeConverter.Conversion<java.sql.Date> {
 
 	@Override
 	public Object[] getTypeKeys() {
@@ -20,20 +20,21 @@ public class SqlDateTypeConversion implements TypeConverter.Conversion {
 	}
 
 	@Override
-	public Object convert(Object value) {
+	public java.sql.Date convert(Object value) {
 		if (value==null) {
 			return null;
 		}
-		if (!(value instanceof java.sql.Date)) {
+		if (value instanceof java.sql.Date) {
+			return (java.sql.Date)value;
+		} else {
 			String v=value.toString();
 			if (v.trim().length()==0) {
-				value=null;
+				return null;
 			}
 			else {
 				// Value must be in the "yyyy-mm-dd" format
-				value=java.sql.Date.valueOf(v);
+				return java.sql.Date.valueOf(v);
 			}
 		}
-		return value;
 	}
 }
