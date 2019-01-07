@@ -1,3 +1,6 @@
 /target/
 typeconverter.iml
 .idea/
+.classpath
+.project
+.settings
