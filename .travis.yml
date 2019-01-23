@@ -2,16 +2,21 @@ language: java
 after_success:
 - mvn javadoc:javadoc
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_API_TOKEN
-  keep-history: true
-  local-dir: target/site/
-  on:
-    branch: master
-
+  - provider: pages
+    skip-cleanup: true
+    github-token: "$GITHUB_API_TOKEN"
+    keep-history: true
+    local-dir: target/site/
+    on:
+      branch: master
+  - provider: script
+    skip_cleanup: true
+    script: "mvn -s .travis/maven-settings.xml deploy"
 
 cache:
   directories:
-  - $HOME/.m2
-
+  - "$HOME/.m2"
+env:
+  global:
+  - secure: swAkIIRohpLi2fHmgMduvq0f1tYEU2HQyGHy8omexIUQ3KJElhi78peQQQSZrBsPB4IB2YjXmNk8kjPtSqz+d/4hWePcKasW+lK1VctrwhySPPFK2d1+foHFcejTzAIwYpmEMK2WL4Ip/s5ZD2nCqpa6rijFTPJfrV7trzWv3z6qdHUJo/K33QHk/mSGar/ogWtE7qO7a4xNp2CTWkNis3VxbRzONn0YcoMCW/BjKapQxyeHpme+9VO+Tu1yHC/rp+GcJ0H0VURNHpzWhPCNpzv7Ihx47Vwx4c/M/4jpwTGVMsBM97wu5tFOE7v7tVQwM/B75QIIcMvoGuKzKY0bgAuyEHbAqQX0LoZx0AlinZo/jN1PqEyGj9n4Q2yPTfBDIC7E//lNYOEmB+OwM7fZE3WPemIYtxH0PiNFrxLuYpN67k5gcA5pfZ3APkZ8Rz+RFW3oSaRRRYEw9PlSpwhUYyUykyMTyuevZDuRL8iRjRrQghLJudEoFW5KRWQdxmLVX9pgCwLWUBPEziq5Mn4hWNSMGTh6gyUEVuNIBN/M+yXORQ5z5uwX+0Jwyt4kcpJyx2qn881WlcBIKx3x15uFkvyDSc2iv5Q0yjH6FFBv2HQwcCrmWGGg8VuyNlQ4OuWM5iKgP9BpYa4N4XnMZoFRrKUu+J/wz/ZRoixRvJs52AQ=
+  - secure: G6ub9X4uuCdrH6d6/o1Je8f1JnkyGWcltdcj0UfqPjA3wsiA4yq3ZM+WUdLFW+vlzePGErFFfudfe5WbWs2x0JR2t7hRE2R7i7H0+K1lEFDsFGg8DrY1TYEXYjkpLsiFW6pqFE7VykIHvecsMWrSVIScm4N/pVq7j1iM/Sx7M0Y2oPXVz3nk4kVEO1bfA9KSaVDn8IFe05PItmbo89WuE35hjeJ4mUfwHT+qD/volT446Lv3SZLhoGoPAN9ZUKPL92iv8vxFmuCy8svh3xAqznHY1WgbbmpNYp/tvcnYz1RyV+OReuZpwiX3vVCna2EMJujd/EJN4GD6N//lB1PNpm8uU1Iog/1kTpWlYV1B426lar/gtKbSod4t4/j6ZOvomtf3GChoPEupZAIrbKV9fJJVNg6Qcx/sNA/8smT/tU8z+F9vMIh4gP7WSTF9fLZG4Llepo3U2Vf+oamEJP3kI4a5qppAPQgYTpCgZZ14bevVNAW+mpeYy7vGshHVBG2QcKT+0NylnkfWbk5f51z7UYhSJ+miX8g7/JJB5k9aN7UXTzqMdAZ1hR/wkIVYA/PQOwewfbw5PrA8bVJA7qHP7JznO1YY73xD0M0/JksbTM0ToYeJAzfweGoHDuATX0W+FfpI4FKgYtbR7r7M6K+b4m9FRh8Ew+H3nfayJMYpPbU=
