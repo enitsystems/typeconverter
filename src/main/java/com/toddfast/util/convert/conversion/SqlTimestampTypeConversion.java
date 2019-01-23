@@ -3,7 +3,7 @@ package com.toddfast.util.convert.conversion;
 import com.toddfast.util.convert.TypeConverter;
 
 /**
- * Convert to a {@link SqlTimestamp} by parsing a value as a string of
+ * Convert to a {@link java.sql.SqlTimestamp} by parsing a value as a string of
  * form <code>yyyy-[m]m-[d]d hh:mm:ss[.f...]</code>.
  *
  * @see	java.sql.Date#valueOf(String)

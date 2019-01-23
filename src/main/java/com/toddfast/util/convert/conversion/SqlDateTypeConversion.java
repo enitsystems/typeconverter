@@ -3,7 +3,7 @@ package com.toddfast.util.convert.conversion;
 import com.toddfast.util.convert.TypeConverter;
 
 /**
- * Convert to a {@link SqlDate} by parsing a value as a string of
+ * Convert to a {@link java.sql.SqlDate} by parsing a value as a string of
  * form <code>yyyy-[m]m-[d]d</code>.
  *
  * @see	java.sql.Date#valueOf(String)

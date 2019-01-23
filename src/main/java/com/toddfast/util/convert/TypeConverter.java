@@ -52,7 +52,7 @@ import java.util.ServiceLoader;
  * more details on how to use the <code>META-INF/services</code> mechanism.
  * <p>
  * The {@link TypeConverter} allows specification of an arbitrary
- * <i>type key</i> in the {@link #registerTypeConversion(Object,TypeConversion)}
+ * <i>type key</i> in the {@link #registerTypeConversion(Object,Conversion)}
  * and {@link #convert(Object,Object)} methods, so one can simultaneously
  * register a conversion object under a {@link Class} object, a class name, and
  * one or more logical type name. For example, the following are valid ways of
@@ -149,7 +149,7 @@ import java.util.ServiceLoader;
  * conversion logic.<p>
  *
  * Be warned that although the type conversion infrastructure in this class
- * is desgned to add only minimal overhead to the conversion process, conversion 
+ * is designed to add only minimal overhead to the conversion process, conversion 
  * of an object to another type is a potentially expensive operation and should
  * be used with discretion.
  *
@@ -217,7 +217,7 @@ public class TypeConverter {
 
 	/**
 	 * Unregister a type conversion object under all keys it specifies via
-	 * the {@link TypeConversion#getTypeKeys} method. Note, if this conversion
+	 * the {@link Conversion#getTypeKeys} method. Note, if this conversion
 	 * is registered under other type keys, it will NOT be removed from those.
 	 *
 	 */
@@ -312,7 +312,7 @@ public class TypeConverter {
 	 * subclass of the specified class. If it is, this method returns the value
 	 * object immediately without attempting to convert its type.  One
 	 * exception to this rule is if the provided type key is
-	 * {@link Object.class}, in which case the conversion is attempted anyway.
+	 * {@code Object.class}, in which case the conversion is attempted anyway.
 	 * The reason for this deviation is that this key may have special meaning
 	 * based on the type of the provided value.  For example, if the provided
 	 * value is a byte array, the {@link ObjectTypeConversion} class assumes
@@ -320,7 +320,7 @@ public class TypeConverter {
 	 * all objects, including arrays, are of type {@link Object},
 	 * this conversion would never be attempted without this special
 	 * handling. (Note that the default conversion for type
-	 * {@link Object.class} is to simply return the original object.)
+	 * {@code Object.class} is to simply return the original object.)
 	 *
 	 * @param	type
 	 *			The target type to which to convert the value
@@ -353,7 +353,7 @@ public class TypeConverter {
 	 * the provided value is the same as or a subclass of the specified
 	 * class. If it is, this method returns the value object immediately
 	 * without attempting to convert its type.  One exception to this
-	 * rule is if the provided type key is {@link Object.class}, in
+	 * rule is if the provided type key is {@code Object.class}, in
 	 * which case the conversion is attempted anyway.  The reason for this
 	 * deviation is that this key may have special meaning based on the
 	 * type of the provided value.  For example, if the provided value is
@@ -362,7 +362,7 @@ public class TypeConverter {
 	 * all objects, including arrays, are of type {@link Object},
 	 * this conversion would never be attempted without this special
 	 * handling. (Note that the default conversion for type key 
-	 * {@link Object.class} is to simply return the original object.)
+	 * {@code Object.class} is to simply return the original object.)
 	 *
 	 * @param	typeKey
 	 *			The key under which the desired type conversion object
@@ -447,7 +447,7 @@ public class TypeConverter {
 	 * @param	value
 	 *			The value to be converted
 	 * @param	nullValue
-	 *			The value to be returned if {@link value} is null. Note, this
+	 *			The value to be returned if {@code value} is null. Note, this
 	 *			value will not be returned if the conversion fails otherwise.
 	 * @throws	IllegalArgumentException
 	 *			If the value cannot be converted
@@ -483,7 +483,7 @@ public class TypeConverter {
 	 * @param	value
 	 *			The value to be converted
 	 * @param	nullValue
-	 *			The value to be returned if {@link value} is null. Note, this
+	 *			The value to be returned if {@code value} is null. Note, this
 	 *			value will not be returned if the conversion fails otherwise.
 	 * @throws	IllegalArgumentException
 	 *			If the value cannot be converted
@@ -519,7 +519,7 @@ public class TypeConverter {
 	 * @param	value
 	 *			The value to be converted
 	 * @param	nullValue
-	 *			The value to be returned if {@link value} is null. Note, this
+	 *			The value to be returned if {@code value} is null. Note, this
 	 *			value will not be returned if the conversion fails otherwise.
 	 * @throws	IllegalArgumentException
 	 *			If the value cannot be converted
@@ -555,7 +555,7 @@ public class TypeConverter {
 	 * @param	value
 	 *			The value to be converted
 	 * @param	nullValue
-	 *			The value to be returned if {@link value} is null. Note, this
+	 *			The value to be returned if {@code value} is null. Note, this
 	 *			value will not be returned if the conversion fails otherwise.
 	 * @throws	IllegalArgumentException
 	 *			If the value cannot be converted
@@ -591,7 +591,7 @@ public class TypeConverter {
 	 * @param	value
 	 *			The value to be converted
 	 * @param	nullValue
-	 *			The value to be returned if {@link value} is null. Note, this
+	 *			The value to be returned if {@code value} is null. Note, this
 	 *			value will not be returned if the conversion fails otherwise.
 	 * @throws	IllegalArgumentException
 	 *			If the value cannot be converted
@@ -627,7 +627,7 @@ public class TypeConverter {
 	 * @param	value
 	 *			The value to be converted
 	 * @param	nullValue
-	 *			The value to be returned if {@link value} is null. Note, this
+	 *			The value to be returned if {@code value} is null. Note, this
 	 *			value will not be returned if the conversion fails otherwise.
 	 * @throws	IllegalArgumentException
 	 *			If the value cannot be converted
@@ -662,7 +662,7 @@ public class TypeConverter {
 	 * @param	value
 	 *			The value to be converted
 	 * @param	nullValue
-	 *			The value to be returned if {@link value} is null. Note, this
+	 *			The value to be returned if {@code value} is null. Note, this
 	 *			value will not be returned if the conversion fails otherwise.
 	 * @throws	IllegalArgumentException
 	 *			If the value cannot be converted
@@ -695,7 +695,7 @@ public class TypeConverter {
 	 * @param	value
 	 *			The value to be converted
 	 * @param	nullValue
-	 *			The value to be returned if {@link value} is null. Note, this
+	 *			The value to be returned if {@code value} is null. Note, this
 	 *			value will not be returned if the conversion fails otherwise.
 	 * @throws	IllegalArgumentException
 	 *			If the value cannot be converted
@@ -728,7 +728,7 @@ public class TypeConverter {
 	 * @param	value
 	 *			The value to be converted
 	 * @param	nullValue
-	 *			The value to be returned if {@link value} is null. Note, this
+	 *			The value to be returned if {@code value} is null. Note, this
 	 *			value will not be returned if the conversion fails otherwise.
 	 * @throws	IllegalArgumentException
 	 *			If the value cannot be converted

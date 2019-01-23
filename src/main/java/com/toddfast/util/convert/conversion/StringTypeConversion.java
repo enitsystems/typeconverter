@@ -4,7 +4,7 @@ import com.toddfast.util.convert.TypeConverter;
 
 /**
  * Converts the value to a string. If the value is a byte or char array,
- * it is converted to a string via {@link toString()}.
+ * it is converted to a string via {@link Object#toString()}.
  *
  */
 public class StringTypeConversion implements TypeConverter.Conversion<String> {
