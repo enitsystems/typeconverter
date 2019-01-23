@@ -11,7 +11,7 @@ deploy:
       branch: master
   - provider: script
     skip_cleanup: true
-    script: "mvn -s .travis/maven-settings.xml deploy"
+    script: "mvn -s .travis/maven-settings.xml deploy -DskipTests -Dmaven.javadoc.skip=true"
 
 cache:
   directories:
