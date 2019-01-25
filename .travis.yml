@@ -12,6 +12,12 @@ deploy:
   - provider: script
     skip_cleanup: true
     script: "mvn -s .travis/maven-settings.xml deploy -DskipTests -Dmaven.javadoc.skip=true"
+  - provider: releases
+    skip_cleanup: true
+    api_key: "$GITHUB_API_TOKEN"
+    file_glob: true
+    file:
+      - "target/typeconverter-*.jar"
 
 cache:
   directories:
